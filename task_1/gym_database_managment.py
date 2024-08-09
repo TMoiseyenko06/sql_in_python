@@ -28,7 +28,7 @@ def add_workout_session(member_id, duration_minutes, calories_burned):
     except Exception as e:
         print(f'Unknown Error: {e}')
     else:
-        pass
+        print('Workout session added!')
 
 def update_member_age(member_id, new_age):
     try:
@@ -41,11 +41,18 @@ def update_member_age(member_id, new_age):
     except Exception as e:
         print(f'Unknown Error: {e}')
     else:
+        print('Updates user age!')
+
+def delete_workout_session(session_id):
+    try:
+        cursor = conn.cursor()
+        query = f'DELETE workout_sessions WHERE id = {session_id}'
+        cursor.execute(query)
+        conn.commit()
+    except Error as e:
+        print(f'Database error: {e}')
+    except Exception as e:
+        print(f'Unknown Error: {e}')
+    else:
         pass
 
-if __name__ == '__main__':
-    conn = connect_db()
-    if conn is not None:
-        add_member('Tim',18,)
-        add_workout_session(1,60,300,)
-        update_member_age(6,19)
